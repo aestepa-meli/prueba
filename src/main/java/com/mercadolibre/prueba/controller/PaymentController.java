@@ -2,6 +2,8 @@ package com.mercadolibre.prueba.controller;
 
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -23,17 +25,21 @@ import com.mercadolibre.prueba.service.IPaymentService;
 @RequestMapping("/payment")
 public class PaymentController {
 	
+	public static final Logger LOG = LoggerFactory.getLogger(PaymentController.class);
+	
 	@Autowired
 	private IPaymentService paymentService;
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> registerPayment(@RequestBody PaymentDTO dto) throws ControlException {
+		LOG.info("Recived payment status:{}",dto.getPaymentType());
 		paymentService.resiterPayment(dto);
 		return new ResponseEntity<>("Saved",HttpStatus.OK);
 	}
 	
 	@GetMapping("/pendingDebt/{loanId}")
 	public ResponseEntity<BalanceDTO> getPendingDebt(@PathVariable("loanId") String loanId, @RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date date ) throws ControlException {
+		LOG.info("Recived pending debt date:{}",date);
 		return new ResponseEntity<>(paymentService.getBalance(date,loanId),HttpStatus.OK);
 	}
 

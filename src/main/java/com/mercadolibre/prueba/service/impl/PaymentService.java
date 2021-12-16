@@ -1,7 +1,11 @@
 package com.mercadolibre.prueba.service.impl;
 
+import static com.mercadolibre.prueba.util.Utils.throwIfTrue;
+
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +19,10 @@ import com.mercadolibre.prueba.persistence.repositories.LoanApplicationRepositor
 import com.mercadolibre.prueba.persistence.repositories.PaymentRepository;
 import com.mercadolibre.prueba.service.IPaymentService;
 
-import static com.mercadolibre.prueba.util.Utils.throwIfTrue;
-
 @Service
 public class PaymentService implements IPaymentService{
+	
+	public static final Logger LOG = LoggerFactory.getLogger(PaymentService.class);
 	
 	@Autowired
 	private LoanApplicationRepository loanApplicationRepository;
@@ -28,11 +32,14 @@ public class PaymentService implements IPaymentService{
 
 	@Override
 	public void resiterPayment(PaymentDTO dto) throws ControlException {
+		LOG.info("Validating Payment...");
 		validatePaymentDTO(dto);
 		PaymentConverter converter = new PaymentConverter();
 		LoanApplication loan = loanApplicationRepository.findByLoanId(dto.getLoanId());
+		throwIfTrue(loan ==null , "No existe Loan Application con este ID");
 		Payment payment = converter.fromEntity(dto);
 		payment.setLoanApplication(loan);
+		LOG.info("Save Payment...");
 		paymentRepository.save(payment);
 	}
 
@@ -40,6 +47,7 @@ public class PaymentService implements IPaymentService{
 	public BalanceDTO getBalance(Date date,String loanId) throws ControlException {
 		throwIfTrue(date == null, "El parametro date es obligatorio");
 		BalanceDTO bDTO = new BalanceDTO();
+		LOG.info("Getting Payment Balance...");
 		Double result = paymentRepository.balance(date,loanId);
 		bDTO.setBalance(result !=null ? result : 0.0);
 		return bDTO;
