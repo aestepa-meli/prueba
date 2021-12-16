@@ -4,6 +4,12 @@ import com.mercadolibre.prueba.controller.dto.PaymentDTO;
 import com.mercadolibre.prueba.converter.IGenericConverter;
 import com.mercadolibre.prueba.model.Payment;
 
+/**
+ * <p>PaymentConverter<p>
+ * Converter de los pagos
+ * @author Jhon
+ *
+ */
 public class PaymentConverter implements IGenericConverter<Payment, PaymentDTO> {
 
 	@Override

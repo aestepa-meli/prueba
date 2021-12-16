@@ -20,6 +20,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.mercadolibre.prueba.model.enumerator.PaymentType;
 
+/**
+ * <p>Payment</p>
+ * Entidad representativa de los pagos
+ * @author Jhon
+ *
+ */
 @Entity
 @Table(name = "PAYMENT")
 @EntityListeners(AuditingEntityListener.class)

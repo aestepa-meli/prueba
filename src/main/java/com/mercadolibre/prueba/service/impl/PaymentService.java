@@ -19,6 +19,13 @@ import com.mercadolibre.prueba.persistence.repositories.LoanApplicationRepositor
 import com.mercadolibre.prueba.persistence.repositories.PaymentRepository;
 import com.mercadolibre.prueba.service.IPaymentService;
 
+/**
+ * <p>PaymentService</p>
+ * Implementacion de IPaymentService
+ * <p>Capa de servicio</p>
+ * @author Jhon
+ *
+ */
 @Service
 public class PaymentService implements IPaymentService{
 	
@@ -53,6 +60,11 @@ public class PaymentService implements IPaymentService{
 		return bDTO;
 	}
 	
+	/**
+	 * Metodo encargado de realizar la validacion de los datos del DTO
+	 * @param dto
+	 * @throws ControlException
+	 */
 	protected void validatePaymentDTO(PaymentDTO dto) throws ControlException {
 		throwIfTrue(dto.getAmount() == null , "El campo Ammount es obligatorio");
 		throwIfTrue(dto.getDate() == null , "El campo Date es obligatorio");

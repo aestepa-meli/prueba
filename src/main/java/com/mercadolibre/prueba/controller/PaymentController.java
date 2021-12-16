@@ -21,6 +21,12 @@ import com.mercadolibre.prueba.controller.dto.response.BalanceDTO;
 import com.mercadolibre.prueba.exception.ControlException;
 import com.mercadolibre.prueba.service.IPaymentService;
 
+/**
+ * <p>PaymentController</p>
+ * Controlador encargadod e los procesos de Pago
+ * @author Jhon
+ *
+ */
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
@@ -30,6 +36,12 @@ public class PaymentController {
 	@Autowired
 	private IPaymentService paymentService;
 	
+	/**
+	 * <p>Registo de Pago</p>
+	 * @param PaymentDTO
+	 * @return Un status indicando si la operacion se realizo correctamente
+	 * @throws ControlException
+	 */
 	@PostMapping("/register")
 	public ResponseEntity<String> registerPayment(@RequestBody PaymentDTO dto) throws ControlException {
 		LOG.info("Recived payment status:{}",dto.getPaymentType());
@@ -37,6 +49,13 @@ public class PaymentController {
 		return new ResponseEntity<>("Saved",HttpStatus.OK);
 	}
 	
+	/**
+	 * <p>Consulta la deuda pendiente hasta una fecha</p>
+	 * @param loanId id unico de prestamo
+	 * @param date
+	 * @return El balance generado hasta la fecha indicada
+	 * @throws ControlException
+	 */
 	@GetMapping("/pendingDebt/{loanId}")
 	public ResponseEntity<BalanceDTO> getPendingDebt(@PathVariable("loanId") String loanId, @RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date date ) throws ControlException {
 		LOG.info("Recived pending debt date:{}",date);

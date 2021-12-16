@@ -4,6 +4,12 @@ import com.mercadolibre.prueba.controller.dto.LoanApplicationDTO;
 import com.mercadolibre.prueba.converter.IGenericConverter;
 import com.mercadolibre.prueba.model.LoanApplication;
 
+/**
+ * <p>LoanApplicationConverter</p>
+ * Converter de las solicitudes de prestamo
+ * @author Jhon
+ *
+ */
 public class LoanApplicationConverter implements IGenericConverter<LoanApplication, LoanApplicationDTO>{
 
 	@Override

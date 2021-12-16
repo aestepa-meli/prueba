@@ -11,6 +11,12 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
+/**
+ * <p>AbstractEntity</p>
+ * Clase Abstracta para generar campos de auditoria
+ * @author Jhon
+ *
+ */
 @MappedSuperclass
 public class AbstractEntity implements Serializable{
 	private static final long serialVersionUID = -5992225615143947648L;

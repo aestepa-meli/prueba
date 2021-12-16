@@ -21,6 +21,13 @@ import com.mercadolibre.prueba.controller.dto.response.FeeDTO;
 import com.mercadolibre.prueba.exception.ControlException;
 import com.mercadolibre.prueba.service.ILoanApplicationService;
 
+
+/**
+ * <p>LoanApplicationController</p>
+ * Controlador encargado de los procesos asociados a Loan Aplication.
+ * @author Jhon
+ *
+ */
 @RestController
 @RequestMapping("/loanAplication")
 public class LoanApplicationController {
@@ -30,13 +37,24 @@ public class LoanApplicationController {
 	@Autowired
 	private ILoanApplicationService loanApplicationService;
 	
-	
+	/**
+	 * <p>Registro de solicitudes d eprestamo</p>
+	 * @param loanApplication
+	 * @return Retorna el registro almacenado con identificador unico y su cuota mensual
+	 * @throws ControlException
+	 */
 	@PostMapping("/register")
 	public ResponseEntity<FeeDTO> registerLoanApplication(@RequestBody LoanApplicationDTO loanApplication) throws ControlException {
 		LOG.info("Recived Loan Application {} ", loanApplication.getDate());
 		return new ResponseEntity<>(loanApplicationService.registerLoanApplication(loanApplication), HttpStatus.OK);
 	}
-	
+	/**
+	 * <p>Lista de solicitudes de prestamo en un rango indicado</p>
+	 * @param from (Fecha desde)
+	 * @param to (Fecha hasta)
+	 * @return Retorna un listado de las solicitudes de prestamo
+	 * @throws ControlException
+	 */
 	@GetMapping("/list")
 	public ResponseEntity<List<LoanApplicationDTO>> listLoanApplication(@RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date from, 
 			                                                            @RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date to) throws ControlException {
