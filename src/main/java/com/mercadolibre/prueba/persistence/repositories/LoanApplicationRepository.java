@@ -14,4 +14,5 @@ public interface LoanApplicationRepository extends JpaRepository<LoanApplication
 	@Query("from LoanApplication lap where lap.date between :from and :to")
 	List<LoanApplication> findLoanAplicationsBetweenDates(@Param("from")Date from,@Param("to")Date to);
 
+	LoanApplication findByLoanId(String loanId);
 }
