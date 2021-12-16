@@ -18,6 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.mercadolibre.prueba.controller.dto.PaymentDTO;
 import com.mercadolibre.prueba.controller.dto.response.BalanceDTO;
+import com.mercadolibre.prueba.exception.ControlException;
 import com.mercadolibre.prueba.model.LoanApplication;
 import com.mercadolibre.prueba.model.Payment;
 import com.mercadolibre.prueba.persistence.repositories.LoanApplicationRepository;
@@ -45,7 +46,7 @@ public class PaymentServiceTest {
 	}
 	
 	@Test
-	public void registerPaymentOK() {
+	public void registerPaymentOK() throws ControlException {
 		
 		paymentService.resiterPayment(paymentDTO);
 		

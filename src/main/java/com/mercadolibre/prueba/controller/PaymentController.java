@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mercadolibre.prueba.controller.dto.PaymentDTO;
 import com.mercadolibre.prueba.controller.dto.response.BalanceDTO;
+import com.mercadolibre.prueba.exception.ControlException;
 import com.mercadolibre.prueba.service.IPaymentService;
 
 @RestController
@@ -26,13 +27,13 @@ public class PaymentController {
 	private IPaymentService paymentService;
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> registerPayment(@RequestBody PaymentDTO dto) {
+	public ResponseEntity<String> registerPayment(@RequestBody PaymentDTO dto) throws ControlException {
 		paymentService.resiterPayment(dto);
 		return new ResponseEntity<>("Saved",HttpStatus.OK);
 	}
 	
 	@GetMapping("/pendingDebt/{loanId}")
-	public ResponseEntity<BalanceDTO> getPendingDebt(@PathVariable("loanId") String loanId, @RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date date ) {
+	public ResponseEntity<BalanceDTO> getPendingDebt(@PathVariable("loanId") String loanId, @RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date date ) throws ControlException {
 		return new ResponseEntity<>(paymentService.getBalance(date,loanId),HttpStatus.OK);
 	}
 

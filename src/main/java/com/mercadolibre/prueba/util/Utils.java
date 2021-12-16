@@ -1,5 +1,6 @@
 package com.mercadolibre.prueba.util;
 
+import com.mercadolibre.prueba.exception.ControlException;
 import com.mercadolibre.prueba.model.LoanApplication;
 import static java.lang.Math.pow;
 
@@ -23,6 +24,12 @@ public class Utils {
 	
 	public static String generateHash() {
 		return RandomStringUtils.randomAlphabetic(10) + System.currentTimeMillis();
+	}
+	
+	public static void throwIfTrue(boolean conditionValue, String message) throws ControlException {
+		if(conditionValue) {
+			throw new ControlException(message);
+		}
 	}
 
 }
