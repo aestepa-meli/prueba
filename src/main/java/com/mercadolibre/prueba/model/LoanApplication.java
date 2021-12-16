@@ -1,6 +1,7 @@
 package com.mercadolibre.prueba.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -36,6 +38,9 @@ public class LoanApplication extends AbstractEntity{
 	@Column(name="DATE")
 	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date date;
+	
+	@OneToMany(mappedBy = "loanApplication")
+	private Set<Payment> payments;
 	
 	public Long getId() {
 		return id;
@@ -78,5 +83,11 @@ public class LoanApplication extends AbstractEntity{
 	}
 	public void setInstallment(Double installment) {
 		this.installment = installment;
+	}
+	public Set<Payment> getPayments() {
+		return payments;
+	}
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
 	}
 }
