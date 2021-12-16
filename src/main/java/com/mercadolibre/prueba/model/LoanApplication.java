@@ -1,6 +1,7 @@
 package com.mercadolibre.prueba.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,15 +9,18 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "LOAN_APLICATION")
 @EntityListeners(AuditingEntityListener.class)
 public class LoanApplication extends AbstractEntity{
-	
+
+	private static final long serialVersionUID = 1600134338696073487L;
 	@Id
 	@Column(name = "ID",updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +36,11 @@ public class LoanApplication extends AbstractEntity{
 	@Column(name="RATE")
 	private Double rate;
 	@Column(name="DATE")
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date date;
+	
+	@OneToMany(mappedBy = "loanApplication")
+	private Set<Payment> payments;
 	
 	public Long getId() {
 		return id;
@@ -75,5 +83,11 @@ public class LoanApplication extends AbstractEntity{
 	}
 	public void setInstallment(Double installment) {
 		this.installment = installment;
+	}
+	public Set<Payment> getPayments() {
+		return payments;
+	}
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
 	}
 }

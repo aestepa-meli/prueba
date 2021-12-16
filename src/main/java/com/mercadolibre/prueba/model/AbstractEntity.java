@@ -1,5 +1,6 @@
 package com.mercadolibre.prueba.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,8 +12,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @MappedSuperclass
-public class AbstractEntity{
-	
+public class AbstractEntity implements Serializable{
+	private static final long serialVersionUID = -5992225615143947648L;
 	@CreatedBy
 	@Column(name="CREATED_BY", nullable = false)
 	private String createdBy;

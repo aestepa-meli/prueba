@@ -13,8 +13,6 @@ public class LoanApplicationConverter implements IGenericConverter<LoanApplicati
 		entity.setDate(dto.getDate());
 		entity.setRate(dto.getRate());
 		entity.setTerm(dto.getTerm());
-		entity.setInstallment(dto.getInstallment());
-		entity.setLoanId(dto.getLoanId());
 		return entity;
 	}
 
@@ -25,8 +23,7 @@ public class LoanApplicationConverter implements IGenericConverter<LoanApplicati
 		dto.setDate(entity.getDate());
 		dto.setRate(entity.getRate());
 		dto.setTerm(entity.getTerm());
-		dto.setInstallment(entity.getInstallment());
 		dto.setLoanId(entity.getLoanId());
-		return null;
+		return dto;
 	}
 }
