@@ -47,7 +47,7 @@ public class PaymentServiceTest {
 	
 	@Test
 	public void registerPaymentOK() throws ControlException {
-		
+		when(loanApplicationRepository.findByLoanId("xckSmealjY1639631149838")).thenReturn(loanApplication);
 		paymentService.resiterPayment(paymentDTO);
 		
 		Mockito.verify(loanApplicationRepository).findByLoanId(loanApplication.getLoanId());
