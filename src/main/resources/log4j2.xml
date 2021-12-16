@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Confifuration monitorInterval="300">
+	<Properties>
+		<Property name= "logName">PruebaMeli</Property>
+		<Property name= "basePath">/opt/logs/PruebaMeli</Property>
+		<Property name= "mainPatternLayout">%d{ISO8601} %-5level [%t] %C{1.}:%L - %msg%n%throwable</Property>
+	</Properties>
+	
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayuot>"${mainPatternLayout}"</PatternLayuot>
+		</Console>
+		
+		<RollingFile name="APP-FILE-APPENDER"
+			fileName="${basePath}/${logName}.log"
+			filePattern="${basePath}/old/${logName}.%d{yyyy.MM.dd}.%i.log.gz">
+			
+			<PatternLayout charset="UTF-8"></PatternLayout>
+			</RollingFile>
+	</Appenders>
+</Confifuration>
