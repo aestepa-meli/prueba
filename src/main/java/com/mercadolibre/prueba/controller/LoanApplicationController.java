@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mercadolibre.prueba.controller.dto.LoanApplicationDTO;
 import com.mercadolibre.prueba.controller.dto.response.FeeDTO;
+import com.mercadolibre.prueba.exception.ControlException;
 import com.mercadolibre.prueba.service.ILoanApplicationService;
 
 @RestController
@@ -27,13 +28,13 @@ public class LoanApplicationController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<FeeDTO> registerLoanApplication(@RequestBody LoanApplicationDTO loanApplication) {
+	public ResponseEntity<FeeDTO> registerLoanApplication(@RequestBody LoanApplicationDTO loanApplication) throws ControlException {
 		return new ResponseEntity<>(loanApplicationService.registerLoanApplication(loanApplication), HttpStatus.OK);
 	}
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<LoanApplicationDTO>> listLoanApplication(@RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date from, 
-			                                                            @RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date to) {
+			                                                            @RequestParam @DateTimeFormat(pattern = "yyy-MM-dd HH:mm:ss") Date to) throws ControlException {
 		return new ResponseEntity<>(loanApplicationService.getLoanApplications(from, to), HttpStatus.OK);
 	}
 

@@ -22,6 +22,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.mercadolibre.prueba.controller.dto.LoanApplicationDTO;
 import com.mercadolibre.prueba.controller.dto.response.FeeDTO;
+import com.mercadolibre.prueba.exception.ControlException;
 import com.mercadolibre.prueba.model.LoanApplication;
 import com.mercadolibre.prueba.persistence.repositories.LoanApplicationRepository;
 
@@ -45,20 +46,20 @@ public class LoanApplicationServiceTest {
 	}
 	
 	@Test
-	public void registerLoanApplicationTestOk() {
+	public void registerLoanApplicationTestOk() throws ControlException {
 		Double expectedResult = 85.61;
 		FeeDTO result =loanApplicationService.registerLoanApplication(loanApplicationDTO);
 		assertNotNull(result.getLoanId());
 		assertEquals(result.getInstallment(),expectedResult);
 	}
 	
-	@Test(expected = NullPointerException.class)
-	public void registerLoanApplicationTestEmpyTerm() {
+	@Test(expected = ControlException.class)
+	public void registerLoanApplicationTestEmpyTerm() throws ControlException {
 		loanApplicationDTO.setTerm(null);
 		loanApplicationService.registerLoanApplication(loanApplicationDTO);
 	}
 	@Test
-	public void getLoanApplicationsOk() throws ParseException {
+	public void getLoanApplicationsOk() throws ParseException, ControlException {
 		List<LoanApplication> list = Arrays.asList(loanApplication); 
 		List<LoanApplicationDTO> list2 = new ArrayList<>();
 		list2.add(loanApplicationDTO); 
