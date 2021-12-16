@@ -9,17 +9,36 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.mercadolibre.prueba.exception.ControlException;
 
+
+
+/**
+ * <p>GlobalControllerAdvideExceptionHandler<P>
+ * Clase encargada de capturar excepciones controlas e inesperadas, para evitar mostrar informacion
+ * sencible del lado del cliente, que comprometa la seguridad.
+ * @author Jhon
+ *
+ */
 @RestControllerAdvice
 public class GlobalControllerAdvideExceptionHandler {
 	
 	public static final Logger LOG = LoggerFactory.getLogger(GlobalControllerAdvideExceptionHandler.class);
 	
+	/**
+	 * 
+	 * @param ex Excepcion controlada generada
+	 * @return Mensaje de error apto para mostrar al cliente con un estado 400
+	 */
 	@ExceptionHandler(ControlException.class)
 	public ResponseEntity<String>error(ControlException ex){
 		LOG.error(ex.getMessage(),ex);
 		return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * 
+	 * @param ex Excepcion generica para capturar errores inesperados
+	 * @return Mensaje de error apto para mostrar al cliente con un estado 500
+	 */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> error(Exception ex){
 		LOG.error(ex.getMessage(),ex);

@@ -1,5 +1,11 @@
 package com.mercadolibre.prueba.controller.dto.response;
 
+/**
+ * <p>FeeDTO</p>
+ * DTO para responder a la solicitud de prestamo
+ * @author Jhon
+ *
+ */
 public class FeeDTO {
 	private String loanId;
 	private Double installment;

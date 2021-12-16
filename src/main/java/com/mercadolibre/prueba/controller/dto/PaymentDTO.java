@@ -6,6 +6,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mercadolibre.prueba.model.enumerator.PaymentType;
 
+/**
+ * <p>PaymentDTO</p>
+ * DTO para los Pagos
+ * @author Jhon
+ *
+ */
 public class PaymentDTO {
 	@JsonProperty("payment")
 	private PaymentType paymentType;

@@ -4,6 +4,13 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+
+/**
+ * <p>LoanApplicationDTO</p>
+ * DTO para las solicitudes de prestamo
+ * @author Jhon
+ *
+ */
 public class LoanApplicationDTO {
 	private Long amount;
 	private Long term;

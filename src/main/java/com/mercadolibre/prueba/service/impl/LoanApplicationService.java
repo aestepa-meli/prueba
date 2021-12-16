@@ -21,6 +21,13 @@ import com.mercadolibre.prueba.model.LoanApplication;
 import com.mercadolibre.prueba.persistence.repositories.LoanApplicationRepository;
 import com.mercadolibre.prueba.service.ILoanApplicationService;
 
+/**
+ * <p>LoanApplicationService</p>
+ * Implementacion de ILoanApplicationService
+ * <p>Capa de servicio<p>
+ * @author Jhon
+ *
+ */
 @Service
 public class LoanApplicationService implements ILoanApplicationService{
 	public static final Logger LOG = LoggerFactory.getLogger(LoanApplicationService.class);
@@ -55,6 +62,11 @@ public class LoanApplicationService implements ILoanApplicationService{
 	}
 
 	
+	/**
+	 * Metodo encargado de realizar que los datos del DTO esten presentes
+	 * @param dto
+	 * @throws ControlException
+	 */
 	protected void validateLoanDTO(LoanApplicationDTO dto) throws ControlException {
 		throwIfTrue(dto.getAmount() == null , "El campo Ammount es obligatorio");
 		throwIfTrue(dto.getDate() == null , "El campo Date es obligatorio");

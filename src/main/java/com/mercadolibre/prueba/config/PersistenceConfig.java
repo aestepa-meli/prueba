@@ -10,6 +10,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.mercadolibre.prueba.util.AuditingDateTimeProvider;
 import com.mercadolibre.prueba.util.UsernameAuditorAware;
 
+
+/**
+ * </p>PersistenceConfig</p>
+ * Configuracion de persistencia de la aplicacion
+ * @author Jhon
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages =  "com.mercadolibre.prueba.model")
@@ -17,11 +24,19 @@ import com.mercadolibre.prueba.util.UsernameAuditorAware;
 @EnableJpaAuditing(auditorAwareRef = "auditingProvider", dateTimeProviderRef = "dateTimeProvider")
 public class PersistenceConfig {
 	
+	/**
+	 * 
+	 * @return proveedor de auditoria para el usuario
+	 */
 	@Bean
 	public UsernameAuditorAware auditingProvider() {
 		return new UsernameAuditorAware();
 	}
 	
+	/**
+	 * 
+	 * @return proveedor de auditoria para la fecha
+	 */
 	@Bean
 	public AuditingDateTimeProvider dateTimeProvider() {
 		return new AuditingDateTimeProvider();

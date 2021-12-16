@@ -15,6 +15,13 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
+
+/**
+ * <p>LoanApplication<p>
+ * Entidad representativa de las solicitudes de pago
+ * @author Jhon
+ *
+ */
 @Entity
 @Table(name = "LOAN_APLICATION")
 @EntityListeners(AuditingEntityListener.class)
