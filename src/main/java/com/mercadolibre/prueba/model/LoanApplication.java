@@ -11,12 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "LOAN_APLICATION")
 @EntityListeners(AuditingEntityListener.class)
 public class LoanApplication extends AbstractEntity{
-	
+
+	private static final long serialVersionUID = 1600134338696073487L;
 	@Id
 	@Column(name = "ID",updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +34,7 @@ public class LoanApplication extends AbstractEntity{
 	@Column(name="RATE")
 	private Double rate;
 	@Column(name="DATE")
+	@DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
 	private Date date;
 	
 	public Long getId() {

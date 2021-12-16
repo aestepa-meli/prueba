@@ -21,9 +21,16 @@ import static com.mercadolibre.prueba.util.BuilderTestUtil.newLoanApplicationDTO
 import static com.mercadolibre.prueba.util.BuilderTestUtil.newFeeDTO;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -62,7 +69,22 @@ public class LoanApplicationControllerTest {
 				.content(gsonBuilder.create().toJson(loanApplicationDTO))
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpectAll(jsonPath("$.installment", equalTo(85.61)));
+				.andExpect(jsonPath("$.installment", equalTo(85.61)));
+	}
+	
+	
+	@Test
+	public void listLoanApplication() throws Exception {
+		List<LoanApplicationDTO> list = new ArrayList<>();
+		list.add(loanApplicationDTO); 
+		
+		when(loanApplicationService.getLoanApplications(Mockito.any(Date.class),Mockito.any(Date.class))).thenReturn(list);
+		
+		mockMvc.perform(get("/loanAplication/list")
+				.queryParam("from", "2017-08-05 02:18:18")
+				.queryParam("to", "2017-08-05 02:18:18"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$", hasSize(1)));
 	}
 
 }

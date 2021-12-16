@@ -13,6 +13,10 @@ import com.mercadolibre.prueba.service.ILoanApplicationService;
 import static com.mercadolibre.prueba.util.Utils.calculateMonthlyFee;
 import static com.mercadolibre.prueba.util.Utils.generateHash;
 
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class LoanApplicationService implements ILoanApplicationService{
 	
@@ -28,6 +32,13 @@ public class LoanApplicationService implements ILoanApplicationService{
 		payload.setLoanId(generateHash());
 		loanApplicationRepository.save(payload);
 		return new FeeDTO(payload.getLoanId(),monthlyFee);
+	}
+
+	@Override
+	public List<LoanApplicationDTO> getLoanApplications(Date from, Date to) {
+		LoanApplicationConverter converter = new LoanApplicationConverter();
+		return loanApplicationRepository.findLoanAplicationsBetweenDates(from, to).stream()
+		.map(loan -> converter.fromDto(loan)).collect(Collectors.toList());
 	}
 
 }

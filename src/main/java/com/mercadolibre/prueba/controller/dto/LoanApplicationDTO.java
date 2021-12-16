@@ -4,8 +4,6 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
-
 public class LoanApplicationDTO {
 	private Long amount;
 	private Long term;
@@ -13,7 +11,6 @@ public class LoanApplicationDTO {
 	@JsonFormat(pattern = "yyy-MM-dd HH:mm:ss")
 	private Date date;
 	private String loanId;
-	private Double installment;
 	
 	public Long getAmount() {
 		return amount;
@@ -44,12 +41,6 @@ public class LoanApplicationDTO {
 	}
 	public void setLoanId(String loanId) {
 		this.loanId = loanId;
-	}
-	public Double getInstallment() {
-		return installment;
-	}
-	public void setInstallment(Double installment) {
-		this.installment = installment;
 	}
 	
 }
