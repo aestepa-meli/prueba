@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 
 import com.mercadolibre.prueba.controller.dto.LoanApplicationDTO;
 import com.mercadolibre.prueba.controller.dto.PaymentDTO;
+import com.mercadolibre.prueba.controller.dto.response.BalanceDTO;
 import com.mercadolibre.prueba.controller.dto.response.FeeDTO;
 import com.mercadolibre.prueba.model.LoanApplication;
 import com.mercadolibre.prueba.model.Payment;
@@ -73,6 +74,12 @@ public class BuilderTestUtil {
 		} catch (ParseException e) {
 			return null;
 		}
+		return obj;
+	}
+	
+	public static BalanceDTO newBalanceDTO() {
+		BalanceDTO obj = new BalanceDTO();
+		obj.setBalance(40.0);
 		return obj;
 	}
 }
