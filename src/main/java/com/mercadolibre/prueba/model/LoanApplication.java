@@ -13,14 +13,18 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "Payload")
+@Table(name = "LOAN_APLICATION")
 @EntityListeners(AuditingEntityListener.class)
-public class Payload extends AbstractEntity{
+public class LoanApplication extends AbstractEntity{
 	
 	@Id
 	@Column(name = "ID",updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name ="LOAN_ID",nullable = false, unique = true)
+	private String loanId;
+	@Column(name = "INSTALLMENT")
+	private Double installment;
 	@Column(name="AMOUNT")
 	private Long amount;
 	@Column(name="TERM")
@@ -59,5 +63,17 @@ public class Payload extends AbstractEntity{
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getLoanId() {
+		return loanId;
+	}
+	public void setLoanId(String loanId) {
+		this.loanId = loanId;
+	}
+	public Double getInstallment() {
+		return installment;
+	}
+	public void setInstallment(Double installment) {
+		this.installment = installment;
 	}
 }
