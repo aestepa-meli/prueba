@@ -22,7 +22,7 @@ services:
     networks:
       - code-network
   prueba:
-    build: './java8/'
+    build: '.'
     environment:
       JAVA_OPTS: '-XX:+UseSerialGC -Xms512m -Xmx1024m'
       JAR_FILE: /${APP_NAME}##${APP_VERSION:?Run docker-compose with env var APP_VERSION (ex. APP_VERSION=1.0.0 docker-compose <command> <option>)}.jar
