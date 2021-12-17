@@ -45,10 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		final String[] matchersPermitAll = { "/html/**", "/css/**", "/img/**", "/js/**", "/webjars/**"
 				,"/webhook","/login","/v3/api-docs","/","/swagger-ui.html","/swagger-ui/*"
-				,"/swagger-resources/**","/webjars/**","/swagger-ui/**", "/javainuse-openapi/**"};
+				,"/swagger-resources/**","/webjars/**","/swagger-ui/**", "/javainuse-openapi/**","/user/register"};
 
 
-		
 		http
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
