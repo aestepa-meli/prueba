@@ -48,7 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				,"/swagger-resources/**","/webjars/**","/swagger-ui/**", "/javainuse-openapi/**"};
 
 
-		
 		http
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
