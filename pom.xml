@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mercadolibre</groupId>
 	<artifactId>prueba</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>prueba</name>
 	<description>challenge MeLi</description>
 	<properties>
@@ -121,8 +121,13 @@
 	</dependencies>
 
 	<build>
-		 <finalName>pruebaMeli</finalName>
+		<finalName>${project.name}##${project.version}</finalName>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>    
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -138,5 +143,25 @@
 		</plugins>
     
 	</build>
+	
+	
+	<profiles>
+		<profile>
+			<id>DesarrolloLocal</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<activatedProperties>DesarrolloLocal</activatedProperties>
+			</properties>
+		</profile>
+		<profile>
+			<id>DesarrolloDocker</id>
+			<properties>
+				<activatedProperties>DesarrolloDocker</activatedProperties>
+			</properties>
+		</profile>
+	</profiles>
+	
 
 </project>

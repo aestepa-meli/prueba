@@ -1,0 +1,42 @@
+version: '3.5'
+
+volumes:
+  mysqlData:
+    driver: local
+
+services:
+  dbMysql:
+    image: mysql:5.7.22
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: db
+      MYSQL_USER: prueba
+      MYSQL_PASSWORD: prueba
+    expose:
+        - "33060"
+    ports:
+        - "33060:3306"
+    volumes:
+     - mysqlData:/var/lib/mysql
+    networks:
+      - code-network
+  prueba:
+    build: '.'
+    environment:
+      JAVA_OPTS: '-XX:+UseSerialGC -Xms512m -Xmx1024m'
+      JAR_FILE: /${APP_NAME}##${APP_VERSION:?Run docker-compose with env var APP_VERSION (ex. APP_VERSION=1.0.0 docker-compose <command> <option>)}.jar
+    volumes:
+      - /opt/logs/pruebaMeli:/opt/logs/pruebaMeli
+      - /opt/TempFiles/pruebaMeli:/opt/TempFiles/pruebaMeli
+    depends_on:
+      - "dbMysql"
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - code-network
+networks:
+  code-network:
+    driver: bridge
+
