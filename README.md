@@ -1,7 +1,7 @@
 # Prueba Mercado Libre
 Jhon Eider Murillo Usuga
 [![](https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2)](https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2)
-## A continuación se detallaran los detalles asociados a la solución del reto propuesto
+## A continuación se daran los detalles asociados a la solución del reto propuesto
 
 ###Ejecución con Docker
 -  Clonar el repositorio.
